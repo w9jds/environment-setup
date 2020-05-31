@@ -15,7 +15,7 @@ install_essentials() {
   sudo apt-get -y install curl git build-essential
 }
 
-setup_zsh_prompt() {
+setup_zsh() {
   # Install OH MY ZSH
   sudo apt-get -y install zsh
   RUNZSH=no sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -61,14 +61,19 @@ setup_golang() {
   curl https://dl.google.com/go/go$GO_VERSION.linux-amd64.tar.gz | sudo tar -C /usr/local -xzf
 }
 
+setup_rust() {
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+}
+
 main() {
   add_package_sources
   install_essentials
   setup_vim
   
-  setup_zsh_prompt
+  setup_zsh
   setup_node
   setup_golang
+  setup_rust
 
   # setup_firebase
   # setup_gcp
