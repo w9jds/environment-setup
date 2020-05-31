@@ -1,6 +1,7 @@
 #!/bin/bash
 
 ZSH=${ZSH:-~/.oh-my-zsh}
+GO_VERSION=${GO_VERSION:-1.14.3}
 
 add_package_sources() {
   # Add the Cloud SDK distribution URI as a package source
@@ -35,6 +36,11 @@ setup_vim() {
   bash $HOME/.vim/activate.sh
 }
 
+setup_tmux() {
+  sudo apt-get -y install tmux
+  cp tmux.conf ~/.tmux.conf
+}
+
 setup_node() {
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
   source ~/.nvm/nvm.sh
@@ -51,6 +57,10 @@ setup_firebase() {
   firebase init
 }
 
+setup_golang() {
+  curl https://dl.google.com/go/go$GO_VERSION.linux-amd64.tar.gz | sudo tar -C /usr/local -xzf
+}
+
 main() {
   add_package_sources
   install_essentials
@@ -58,9 +68,12 @@ main() {
   
   setup_zsh_prompt
   setup_node
+  setup_golang
 
   # setup_firebase
   # setup_gcp
+
+  zsh
 }
 
 main "$@"
