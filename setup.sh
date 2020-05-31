@@ -32,7 +32,7 @@ setup_zsh_prompt() {
 setup_vim() {
   sudo apt-get -y install vim
   git clone https://github.com/braintreeps/vim_dotfiles.git ~/.vim
-  ./$HOME/.vim/activate.sh
+  bash $HOME/.vim/activate.sh
 }
 
 setup_node() {
