@@ -37,8 +37,7 @@ setup_vim() {
 
 setup_node() {
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-
-  sudo bash ~/.nvm/nvm.sh
+  source ~/.nvm/nvm.sh
   nvm install --lts
 }
 
